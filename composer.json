@@ -1,0 +1,30 @@
+{
+  "name": "uwebpro/scraper",
+  "description": "Unbeatable web scraping for PHP",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "willpercey",
+      "email": "info@uwebpro.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "UWebPro\\Scraper\\": "src/"
+    }
+  },
+  "require": {
+    "php": "^8.2",
+    "guzzlehttp/psr7": "^2.5",
+    "chrome-php/chrome": "^1.9",
+    "thecodingmachine/safe": "^2.5",
+    "uwebpro/dom-transformer": "^1.0",
+    "uwebpro/crawler": "^1.0",
+    "uwebpro/scrapoxy-api": "^2.1",
+    "guzzlehttp/guzzle": "^7.7",
+    "ext-curl": "*"
+  },
+  "require-dev": {
+    "roave/security-advisories": "dev-latest"
+  }
+}
