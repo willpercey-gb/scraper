@@ -78,6 +78,17 @@ class ChromeScraper implements ScraperContract
         return $this;
     }
 
+
+    public function get(string $uri, array $parameters = [], array $options = [], int $attempts = 1): Crawler
+    {
+        //transform parameters into query string
+        if (!empty($parameters)) {
+            $uri .= '?' . http_build_query($parameters);
+        }
+
+        return $this->request('get', $uri, $options, $attempts);
+    }
+
     /**
      * @throws OperationTimedOut
      * @throws NavigationExpired
