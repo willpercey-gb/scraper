@@ -2,6 +2,7 @@
 
 namespace UWebPro\Scraper\Provider;
 
+use Curl\Curl;
 use UWebPro\Crawler\Crawler;
 
 class CurlScraper implements ScraperContract
@@ -15,7 +16,7 @@ class CurlScraper implements ScraperContract
     ) {
     }
 
-    public function request(string $method, string $uri = '', array $options, int $attempts = 1): Crawler
+    public function request(string $method, string $uri = '', array $options = [], int $attempts = 1): Crawler
     {
         $curl = new Curl();
         $curl->setOpt(CURLOPT_FOLLOWLOCATION, true);
@@ -27,7 +28,7 @@ class CurlScraper implements ScraperContract
             $this->headers['User-Agent'] ?? self::USER_AGENTS[random_int(0, count(self::USER_AGENTS) - 1)]
         );
         $curl->setHeaders($this->headers);
-        $curl->{$method}($url, $options);
+        $curl->{$method}($uri, $options);
 
         if ($curl->error) {
 //            if ($this->command) {
