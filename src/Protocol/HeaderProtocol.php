@@ -1,6 +1,6 @@
 <?php
 
-namespace UWebPro\Scraper;
+namespace UWebPro\Scraper\Protocol;
 
 class HeaderProtocol
 {
