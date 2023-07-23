@@ -5,6 +5,8 @@ namespace UWebPro\Scraper\Provider;
 use Curl\Curl;
 use UWebPro\Crawler\Crawler;
 
+/** @internal  */
+/** @development */
 class CurlScraper implements ScraperContract
 {
     public function __construct(

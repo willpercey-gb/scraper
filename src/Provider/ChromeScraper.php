@@ -18,6 +18,7 @@ use HeadlessChromium\Page;
 use UWebPro\Crawler\Crawler;
 use UWebPro\DOMTransformer\DOMTransformer;
 use UWebPro\Scraper\Exceptions\BadRequestException;
+use UWebPro\Scraper\Protocol\RequestProtocol;
 
 class ChromeScraper implements ScraperContract
 {
@@ -78,6 +79,17 @@ class ChromeScraper implements ScraperContract
         return $this;
     }
 
+
+    public function fromRequestProtocol(RequestProtocol $requestProtocol, array $replacements = []): Crawler
+    {
+        $requestProtocol->prepare($replacements);
+
+        if (!empty($requestProtocol->headers) || !empty($requestProtocol->cookies)) {
+            //TODO logging
+        }
+
+        return $this->request($requestProtocol->method, $requestProtocol->url);
+    }
 
     public function get(string $uri, array $parameters = [], array $options = [], int $attempts = 1): Crawler
     {

@@ -1,6 +1,8 @@
 <?php
 
-use UWebPro\Scraper\RequestProtocol;
+namespace UWebPro\Scraper\Transformer;
+
+use UWebPro\Scraper\Protocol\RequestProtocol;
 
 class RequestTransformer
 {

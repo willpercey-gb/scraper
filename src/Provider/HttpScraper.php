@@ -8,6 +8,7 @@ use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Exception\RequestException;
 use Psr\Http\Message\ResponseInterface;
 use UWebPro\Crawler\Crawler;
+use UWebPro\Scraper\Protocol\RequestProtocol;
 
 /**
  * Class Scraper
@@ -61,6 +62,19 @@ class HttpScraper implements ScraperContract
     {
         $this->cookies = $cookies;
         return $this;
+    }
+
+    public function fromRequestProtocol(RequestProtocol $requestProtocol, array $replacements = []): Crawler
+    {
+        $requestProtocol->prepare($replacements);
+
+        $headers = array_column($requestProtocol->headers, 'value', 'name');
+        $this->setHeaders($headers);
+
+        $cookies = array_column($requestProtocol->cookies, 'value', 'name');
+        $this->setCookies($cookies);
+
+        return $this->request($requestProtocol->method, $requestProtocol->url);
     }
 
     public function request(
